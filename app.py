@@ -207,9 +207,6 @@ with tab1:
             except Exception as e:
                 st.error(f"분석 실패: {e}")
 
-# ------------------------------------------
-# TAB 2: 스탯 직접 입력 시뮬레이터
-# ------------------------------------------
 with tab2:
     st.subheader("내 경기 스탯으로 직접 테스트해 보기")
     st.markdown("슬라이더를 조절해 경기 기록을 입력하면 학습된 `tier_model.pkl`이 실시간으로 티어를 예측합니다.")
@@ -247,6 +244,16 @@ with tab2:
         "block_try": 5,
         "block_success": 3,
     }])
+
+    X_sim, _ = create_features(sim_row)
+    sim_pred = int(model.predict(X_sim).item())
+    sim_prob = float(model.predict_proba(X_sim).ravel().tolist().pop()) * 100
+
+    st.divider()
+    res_col1, res_col2 = st.columns(2)
+    res_col1.metric("시뮬레이션 AI 예측 결과", "🏆 상위권 (챌린저3↑)" if sim_pred == 1 else "⚽ 일반권 (마스터1↓)")
+    res_col2.metric("상위권 플레이 스타일 일치도", f"{sim_prob:.1f}%")
+
 
 st.divider()
 st.caption("Data based on NEXON Open API")
