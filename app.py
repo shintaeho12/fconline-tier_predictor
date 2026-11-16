@@ -247,3 +247,6 @@ with tab2:
         "block_try": 5,
         "block_success": 3,
     }])
+
+st.divider()
+st.caption("Data based on NEXON Open API")
