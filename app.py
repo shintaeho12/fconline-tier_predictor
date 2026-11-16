@@ -155,7 +155,7 @@ def fetch_cached_user_matches(nickname, api_key, max_matches=5):
 # 4. 웹 UI 렌더링
 # ==========================================
 st.title("⚽ FC 온라인 AI 공식경기 티어 유추 서비스")
-st.markdown("Random Forest 머신러닝 모델이 경기 세부 지표(패스 효율, 스루패스 비중, 슈팅 정교함 등)를 분석하여 **챌린저 3부 이상 상위권 플레이 스타일**인지 판별합니다.")
+st.markdown("Random Forest 머신러닝 모델이 경기 세부 지표(패스 효율, 스루패스 비중, 슈팅 정교함 등)를 분석하여 **챌린저 1부 이상 상위권 플레이 스타일**인지 판별합니다.")
 
 model = load_model()
 
@@ -251,7 +251,7 @@ with tab2:
 
     st.divider()
     res_col1, res_col2 = st.columns(2)
-    res_col1.metric("시뮬레이션 AI 예측 결과", "🏆 상위권 (챌린저3↑)" if sim_pred == 1 else "⚽ 일반권 (마스터1↓)")
+    res_col1.metric("시뮬레이션 AI 예측 결과", "🏆 상위권 (챌린저1↑)" if sim_pred == 1 else "⚽ 일반권 (챌린저2↓)")
     res_col2.metric("상위권 플레이 스타일 일치도", f"{sim_prob:.1f}%")
 
 
